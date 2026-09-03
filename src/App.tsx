@@ -18,6 +18,7 @@ import AthleteSetup from './pages/AthleteSetup';
 import WorkoutHistory from './pages/WorkoutHistory';
 import MovementLibrary from './pages/MovementLibrary';
 import ThankYou from './pages/ThankYou';
+import Quiz from './pages/Quiz';
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, isPro, daysLeft, loading, needsSetup } = useAuth();
@@ -81,6 +82,7 @@ export default function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/vendas" element={<LandingPage />} />
+            <Route path="/quiz" element={<Quiz />} />
             <Route path="/obrigado" element={<ThankYou />} />
             <Route
               path="/treino"

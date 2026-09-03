@@ -150,6 +150,8 @@
 @keyframes demo-row { 0%,100%{opacity:.65}40%,70%{opacity:1} }
 @keyframes demo-progress { 0%{width:0}55%,100%{width:76%} }
 @keyframes demo-cursor { 0%,100%{transform:translate(30px,30px);opacity:0}25%,65%{transform:translate(0,0);opacity:1}75%{transform:scale(.8);opacity:0} }
+@keyframes quiz-step-in { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+.quiz-step-enter { animation: quiz-step-in .35s ease-out; }
 
 @media (max-width:700px){.hero-video-vignette{background:linear-gradient(0deg,rgba(4,4,4,.92),rgba(4,4,4,.53),rgba(4,4,4,.72))}.section-video-background video{opacity:.58}.section-video-vignette{background:linear-gradient(0deg,rgba(5,5,5,.76),rgba(5,5,5,.28),rgba(5,5,5,.66))}.demo-layout{grid-template-columns:1fr}.demo-insight{display:none}.product-demo{transform:none}.sound-toggle span:not(.sound-bars){display:none}.demo-row em{display:none}}
 @media (prefers-reduced-motion:reduce){.hero-video-background video,.section-video-background video{transition:none;transform:none!important}.section-video-background video{opacity:.18}.landing-glow,.landing-scan,.landing-gradient-text,.sound-bars i,.product-demo:before,.demo-live i,.demo-week .active i,.demo-row,.demo-insight div span,.demo-cursor{animation:none!important}.demo-cursor{display:none}}
