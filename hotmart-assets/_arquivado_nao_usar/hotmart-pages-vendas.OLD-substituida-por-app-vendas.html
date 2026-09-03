@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HybridTracker - O unico app que evolui com você</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
+  body{background:#0a0a0a;color:#fff;line-height:1.6}
+  .container{max-width:1200px;margin:0 auto;padding:0 20px}
+  
+  /* Hero */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+  .hero::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,#1a0a00 0%,#0a0a0a 50%,#0d0d0d 100%);z-index:-2}
+  .hero-particles{position:absolute;inset:0;z-index:-1;opacity:.6}
+  .hero-content{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .hero h1{font-size:3.5rem;font-weight:800;line-height:1.1;margin-bottom:20px}
+  .hero h1 span{color:#f97316}
+  .hero p{font-size:1.2rem;color:#ccc;margin-bottom:30px}
+  .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.3);color:#f97316;padding:8px 16px;border-radius:50px;font-size:.9rem;margin-bottom:20px}
+  .pulse{animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+  
+  /* Buttons */
+  .btn-group{display:flex;gap:15px;flex-wrap:wrap;margin-bottom:25px}
+  .btn-primary{background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;padding:16px 32px;border-radius:8px;font-size:1.1rem;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .3s;box-shadow:0 4px 20px rgba(249,115,22,.3)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 30px rgba(249,115,22,.4)}
+  .btn-secondary{border:1px solid rgba(249,115,22,.5);color:#f97316;padding:16px 32px;border-radius:8px;font-size:1.1rem;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .3s;background:rgba(0,0,0,.3)}
+  .btn-secondary:hover{background:rgba(249,115,22,.1)}
+  
+  /* Social Proof */
+  .social-proof{background:rgba(255,255,255,.03);border-top:1px solid rgba(249,115,22,.1);border-bottom:1px solid rgba(249,115,22,.1);padding:80px 0}
+  .section-title{text-align:center;margin-bottom:50px}
+  .section-title h2{font-size:2.5rem;margin-bottom:10px}
+  .section-title p{color:#888}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .card{background:rgba(255,255,255,.03);border:1px solid rgba(249,115,22,.1);border-radius:12px;overflow:hidden;transition:all .3s}
+  .card:hover{border-color:rgba(249,115,22,.3);transform:translateY(-5px)}
+  .card img{width:100%;height:200px;object-fit:cover}
+  .card-body{padding:20px}
+  .card-body h3{font-size:1.1rem;margin-bottom:8px}
+  .card-body p{color:#888;font-size:.9rem}
+  .likes{color:#f97316;font-size:.85rem}
+  
+  /* Features */
+  .features{padding:80px 0}
+  .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .grid-3f{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .feature-card{background:rgba(255,255,255,.03);border:1px solid rgba(249,115,22,.1);border-radius:12px;padding:30px;transition:all .3s}
+  .feature-card:hover{border-color:rgba(249,115,22,.3);transform:translateY(-5px)}
+  .feature-icon{width:50px;height:50px;background:rgba(249,115,22,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:15px}
+  .feature-card h3{font-size:1.2rem;margin-bottom:10px}
+  .feature-card p{color:#888;font-size:.9rem}
+  
+  /* Pricing */
+  .pricing{background:rgba(255,255,255,.03);border-top:1px solid rgba(249,115,22,.1);padding:80px 0}
+  .pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;max-width:700px;margin:0 auto}
+  .price-card{background:rgba(255,255,255,.03);border:1px solid rgba(249,115,22,.1);border-radius:16px;padding:40px;text-align:center;position:relative;transition:all .3s}
+  .price-card:hover{transform:translateY(-5px)}
+  .price-card.popular{border-color:rgba(249,115,22,.3);box-shadow:0 0 30px rgba(249,115,22,.1)}
+  .price-tag{font-size:2.5rem;font-weight:800;margin:15px 0}
+  .price-tag span{font-size:1rem;color:#888;font-weight:400}
+  .price-features{text-align:left;margin:25px 0}
+  .price-features li{list-style:none;padding:8px 0;color:#aaa;display:flex;align-items:center;gap:10px}
+  .price-features li::before{content:'✓';color:#22c55e;font-weight:bold}
+  .trial-badge{background:rgba(34,197,94,.1);color:#4ade80;padding:4px 12px;border-radius:6px;font-size:.8rem;display:inline-block;margin-bottom:15px}
+  .popular-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#f97316;color:#fff;padding:4px 16px;border-radius:50px;font-size:.8rem;font-weight:600;animation:pulse 2s infinite}
+  
+  /* FAQ */
+  .faq{padding:80px 0}
+  .faq-item{background:rgba(255,255,255,.03);border:1px solid rgba(249,115,22,.1);border-radius:12px;margin-bottom:12px;overflow:hidden;cursor:pointer;transition:all .3s}
+  .faq-item:hover{border-color:rgba(249,115,22,.2)}
+  .faq-item.active{border-color:rgba(249,115,22,.3);background:rgba(249,115,22,.03)}
+  .faq-question{padding:20px;display:flex;justify-content:space-between;align-items:center}
+  .faq-question h3{font-size:1rem;font-weight:600}
+  .faq-icon{transition:transform .3s;color:#f97316}
+  .faq-item.active .faq-icon{transform:rotate(180deg)}
+  .faq-answer{padding:0 20px 20px;color:#aaa;font-size:.9rem;display:none}
+  .faq-item.active .faq-answer{display:block}
+  
+  /* CTA */
+  .cta{padding:100px 0;text-align:center;background:linear-gradient(180deg,transparent,rgba(249,115,22,.05))}
+  .cta h2{font-size:2.5rem;margin-bottom:20px}
+  .cta p{color:#888;margin-bottom:30px;max-width:600px;margin-left:auto;margin-right:auto}
+  
+  /* Footer */
+  footer{border-top:1px solid rgba(249,115,22,.1);padding:40px 0;text-align:center;color:#666;font-size:.9rem}
+  footer a{color:#f97316;text-decoration:none}
+  
+  /* Responsive */
+  @media(max-width:768px){
+    .hero-content{grid-template-columns:1fr}
+    .hero h1{font-size:2.5rem}
+    .grid-3,.grid-3f,.grid-2,.pricing-grid{grid-template-columns:1fr}
+    .btn-group{flex-direction:column}
+    .btn-primary,.btn-secondary{width:100%;justify-content:center}
+  }
+  
+  /* Urgency bar */
+  .urgency-bar{position:fixed;top:0;left:0;right:0;background:rgba(124,45,18,.9);border-bottom:1px solid rgba(249,115,22,.3);backdrop-filter:blur(10px);text-align:center;padding:8px;z-index:1000;font-size:.85rem}
+  .urgency-bar span{font-weight:700;color:#fdba74}
+  .urgency-timer{display:flex;gap:8px;justify-content:center;margin-top:5px}
+  .timer-box{background:rgba(0,0,0,.3);border:1px solid rgba(249,115,22,.3);padding:4px 10px;border-radius:6px;font-size:.8rem}
+  .timer-box strong{color:#f97316;font-size:1.1rem;display:block}
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-particles">
+    <canvas id="particles"></canvas>
+  </div>
+  <div class="container" style="padding-top:80px">
+    <div class="hero-content">
+      <div>
+        <div class="badge pulse">🔥 500+ atletas já estão usando</div>
+        <h1>O único app que <span>evolui</span> com você</h1>
+        <p>Benchmarks científicos, timer de prova, plano semanal adaptativo e recuperação inteligente. Tudo que você precisa para ir mais longe na temporada.</p>
+        <div class="btn-group">
+          <a href="https://pay.hotmart.com/D107289174S?off=wsvcmylk" class="btn-primary">⚡ Quero Testar Gratis (7 dias)</a>
+          <a href="#features" class="btn-secondary">▶ Ver Demo do App</a>
+        </div>
+        <p style="color:#888;font-size:.9rem">⭐⭐⭐ +3.000 downloads na primeira semana</p>
+      </div>
+      <div style="position:relative">
+        <div style="position:absolute;inset:-20px;background:linear-gradient(135deg,rgba(249,115,22,.2),rgba(220,38,38,.2));border-radius:20px;filter:blur(20px)"></div>
+        <div style="position:relative;background:rgba(0,0,0,.5);border:1px solid rgba(249,115,22,.2);border-radius:16px;overflow:hidden;backdrop-filter:blur(10px)">
+          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=400&fit=crop" alt="Atleta usando app" style="width:100%;height:auto;opacity:.9">
+          <div style="padding:16px;display:flex;align-items:center;gap:12px">
+            <div style="width:40px;height:40px;background:rgba(249,115,22,.2);border-radius:50%;display:flex;align-items:center;justify-content:center">🏆</div>
+            <div style="flex:1">
+              <div style="font-weight:600;font-size:.9rem">Novo PB no Sled Push!</div>
+              <div style="font-size:.8rem;color:#888">Ana P. • Pro • Rio de Janeiro</div>
+            </div>
+            <div style="text-align:right">
+              <div style="color:#f97316;font-weight:700">42s</div>
+              <div style="font-size:.75rem;color:#666">-8s</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Social Proof -->
+<section class="social-proof">
+  <div class="container">
+    <div class="section-title">
+      <div style="display:inline-flex;align-items:center;gap:8px;color:#f97316;margin-bottom:10px">👥 Comunidade HybridTracker</div>
+      <h2>Elas já estão usando. E você?</h2>
+      <p>Atletas reais compartilhando progresso, comparando benchmarks e motivando umas as outras.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&h=250&fit=crop" alt="Atleta">
+        <div class="card-body">
+          <h3>Compartilhando progresso com a amiga</h3>
+          <p class="likes">❤️ 245 curtidas</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=400&h=250&fit=crop" alt="Treino">
+        <div class="card-body">
+          <h3>Selfie do treino de hoje</h3>
+          <p class="likes">❤️ 189 curtidas</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&h=250&fit=crop" alt="Pos-treino">
+        <div class="card-body">
+          <h3>Cafe pos-treino vendo os dados</h3>
+          <p class="likes">❤️ 312 curtidas</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Problem/Solution -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="section-title">
+      <h2>Voce treina forte, mas nao sabe se esta evoluindo</h2>
+      <p>Sem dados, você esta no escuro. O HybridTracker traz a ciência do treino para o fitness racing.</p>
+    </div>
+    <div class="grid-3f">
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>VO2max Estimado</h3>
+        <p>Teste de 1600m + formula cientifica para medir sua capacidade aerobia</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📈</div>
+        <h3>Limiar de Lactato</h3>
+        <p>Calcule suas zonas de treino para correr mais forte por mais tempo</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <h3>Predictor de Prova</h3>
+        <p>Saiba seu tempo previsto antes de pisar na prova</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Grid -->
+<section class="features" style="background:rgba(255,255,255,.03);border-top:1px solid rgba(249,115,22,.1);border-bottom:1px solid rgba(249,115,22,.1)">
+  <div class="container">
+    <div class="section-title">
+      <h2>Tudo que você precisa em um so lugar</h2>
+    </div>
+    <div class="grid-2">
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>8 Benchmarks + Teste de Pista</h3>
+        <p>Calcule VO2max, limiar de lactato e tempo previsto de prova com base na ciência do esporte.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⏱️</div>
+        <h3>Timer de Prova Completa</h3>
+        <p>Simule os 8 blocos com cronometro preciso e alertas de transicao.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Plano Semanal Adaptativo</h3>
+        <p>Treinos gerados automaticamente baseados nos seus benchmarks. Edite livremente.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">❤️</div>
+        <h3>Recuperacao Inteligente</h3>
+        <p>Mobilidade, sono, respiração, contrast bath e check-in semanal de dor.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⌚</div>
+        <h3>Integração Wearables</h3>
+        <p>Upload de arquivos .FIT, .TCX e .GPX do Garmin, Polar, Apple Watch e Samsung.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔔</div>
+        <h3>Notificações Inteligentes</h3>
+        <p>Lembretes de hidratacao, sono, mobilidade matinal e alertas de carga.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section class="features">
+  <div class="container">
+    <div class="section-title">
+      <h2>Como funciona</h2>
+      <p>Tres passos para começar a treinar de forma inteligente</p>
+    </div>
+    <div class="grid-3f">
+      <div style="text-align:center;position:relative">
+        <div style="width:80px;height:80px;background:linear-gradient(135deg,rgba(249,115,22,.2),rgba(194,65,12,.2));border:1px solid rgba(249,115,22,.2);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:2rem">🏋️</div>
+        <div style="position:absolute;top:-8px;left:50%;transform:translateX(-50%);width:32px;height:32px;background:#f97316;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem">01</div>
+        <h3 style="margin-bottom:10px">Cadastre seus Benchmarks</h3>
+        <p style="color:#888;font-size:.9rem">Insira seus tempos nas 8 estações + teste de 1600m. O app calcula seu VO2max.</p>
+      </div>
+      <div style="text-align:center;position:relative">
+        <div style="width:80px;height:80px;background:linear-gradient(135deg,rgba(249,115,22,.2),rgba(194,65,12,.2));border:1px solid rgba(249,115,22,.2);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:2rem">∞</div>
+        <div style="position:absolute;top:-8px;left:50%;transform:translateX(-50%);width:32px;height:32px;background:#f97316;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem">02</div>
+        <h3 style="margin-bottom:10px">Siga o Plano Semanal</h3>
+        <p style="color:#888;font-size:.9rem">Treinos adaptados aos seus dados. Corrida, força, metcon e recuperação.</p>
+      </div>
+      <div style="text-align:center;position:relative">
+        <div style="width:80px;height:80px;background:linear-gradient(135deg,rgba(249,115,22,.2),rgba(194,65,12,.2));border:1px solid rgba(249,115,22,.2);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:2rem">🏆</div>
+        <div style="position:absolute;top:-8px;left:50%;transform:translateX(-50%);width:32px;height:32px;background:#f97316;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem">03</div>
+        <h3 style="margin-bottom:10px">Evolua e Bata seus PBs</h3>
+        <p style="color:#888;font-size:.9rem">Acompanhe sua evolucao e chegue mais forte na proxima prova.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PWA Features -->
+<section class="features" style="background:rgba(255,255,255,.03);border-top:1px solid rgba(249,115,22,.1);border-bottom:1px solid rgba(249,115,22,.1)">
+  <div class="container">
+    <div class="section-title">
+      <h2>Funciona no seu celular como um app nativo</h2>
+      <p>PWA instalavel. Salve na tela inicial e use offline.</p>
+    </div>
+    <div class="grid-3f">
+      <div style="text-align:center">
+        <div style="width:64px;height:64px;background:rgba(249,115,22,.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 15px;font-size:2rem">📱</div>
+        <h3 style="margin-bottom:5px">Instale na Home</h3>
+        <p style="color:#888;font-size:.9rem">Salve o icone no celular como um app nativo</p>
+      </div>
+      <div style="text-align:center">
+        <div style="width:64px;height:64px;background:rgba(249,115,22,.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 15px;font-size:2rem">🌍</div>
+        <h3 style="margin-bottom:5px">3 Idiomas</h3>
+        <p style="color:#888;font-size:.9rem">Português, English, Deutsch</p>
+      </div>
+      <div style="text-align:center">
+        <div style="width:64px;height:64px;background:rgba(249,115,22,.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 15px;font-size:2rem">🌙</div>
+        <h3 style="margin-bottom:5px">Tema Escuro</h3>
+        <p style="color:#888;font-size:.9rem">Design laranjá e preto pensado para atletas</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="features">
+  <div class="container">
+    <div class="section-title">
+      <h2>O que os atletas estão dizendo</h2>
+    </div>
+    <div class="grid-3">
+      <div class="feature-card">
+        <div style="color:#f97316;margin-bottom:10px">⭐⭐⭐⭐⭐</div>
+        <p style="color:#aaa;margin-bottom:15px">"Meu tempo no Sled Push caiu 40s em 6 semanas usando o plano do app. Game changer."</p>
+        <div>
+          <div style="font-weight:600">Ricardo M.</div>
+          <div style="font-size:.85rem;color:#666">Open, Sao Paulo</div>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div style="color:#f97316;margin-bottom:10px">⭐⭐⭐⭐⭐</div>
+        <p style="color:#aaa;margin-bottom:15px">"Finalmente entendi meu limiar de lactato. O predictor e assustadoramente preciso."</p>
+        <div>
+          <div style="font-weight:600">Ana P.</div>
+          <div style="font-size:.85rem;color:#666">Pro, Rio de Janeiro</div>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div style="color:#f97316;margin-bottom:10px">⭐⭐⭐⭐⭐</div>
+        <p style="color:#aaa;margin-bottom:15px">"As notificacoes de recuperação me salvaram de uma tendinite. Melhor investimento."</p>
+        <div>
+          <div style="font-weight:600">Felipe K.</div>
+          <div style="font-size:.85rem;color:#666">Doubles, Curitiba</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="section-title">
+      <h2>Investimento</h2>
+      <p>Menos que uma consulta com fisio. Mais valor que um mes de academia.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card popular">
+        <div class="popular-badge">7 DIAS GRATIS</div>
+        <div style="color:#888;font-size:.9rem;margin-bottom:10px">Mensal</div>
+        <div class="price-tag">R$ 19,90<span> no primeiro mes</span></div>
+        <p style="color:#888;font-size:.8rem;margin-bottom:10px">Depois, R$ 49,90/mes a partir do segundo mes.</p>
+        <div class="trial-badge">✓ 7 dias gratis para testar</div>
+        <ul class="price-features">
+          <li>Benchmarks ilimitados</li>
+          <li>Timer de prova completa</li>
+          <li>Plano semanal adaptativo</li>
+          <li>Modulo de recuperação</li>
+          <li>Notificações inteligentes</li>
+          <li>Upload .FIT/.TCX</li>
+          <li>Manual do Atleta (PDF)</li>
+          <li>Suporte em PT/EN/DE</li>
+        </ul>
+        <a href="https://pay.hotmart.com/D107289174S?off=wsvcmylk" class="btn-primary" style="width:100%;justify-content:center">Comecar Trial de 7 Dias →</a>
+      </div>
+    </div>
+    <p style="text-align:center;color:#666;font-size:.85rem;margin-top:25px">Pagamento processado via Hotmart. 7 dias de garantia incondicional.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container" style="max-width:800px">
+    <div class="section-title">
+      <h2>Perguntas Frequentes</h2>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('active')">
+      <div class="faq-question">
+        <h3>Preciso de relógio Garmin para usar?</h3>
+        <span class="faq-icon">▼</span>
+      </div>
+      <div class="faq-answer">Nao. O app funciona 100% sem wearable. Voce pode inserir seus tempos manualmente nos benchmarks. O upload de arquivos .FIT e um recurso bônus.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('active')">
+      <div class="faq-question">
+        <h3>O trial e realmente gratuito?</h3>
+        <span class="faq-icon">▼</span>
+      </div>
+      <div class="faq-answer">Sim. Sao 7 dias de acesso completo. Depois, o primeiro mes custa R$ 19,90 e as mensalidades seguintes custam R$ 49,90. A assinatura pode ser cancelada pela Hotmart.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('active')">
+      <div class="faq-question">
+        <h3>Posso cancelar a qualquer momento?</h3>
+        <span class="faq-icon">▼</span>
+      </div>
+      <div class="faq-answer">Sim. Nao ha fidelidade. Cancele quando quiser pela própria Hotmart e seu acesso continua ate o final do período pago.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('active')">
+      <div class="faq-question">
+        <h3>Funciona offline?</h3>
+        <span class="faq-icon">▼</span>
+      </div>
+      <div class="faq-answer">Sim. Uma vez carregado, o app funciona offline no seu celular. Os dados sao salvos localmente e sincronizados quando a conexão volta.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('active')">
+      <div class="faq-question">
+        <h3>E se eu fizer a prova Pro ao inves de Open?</h3>
+        <span class="faq-icon">▼</span>
+      </div>
+      <div class="faq-answer">O app funciona para ambas as categorias. Voce pode cadastrar seus benchmarks com as cargas que usa e o predictor se ajusta automaticamente.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="cta">
+  <div class="container">
+    <div style="width:80px;height:80px;background:linear-gradient(135deg,#f97316,#c2410c);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 25px;font-size:2.5rem;box-shadow:0 0 30px rgba(249,115,22,.3)">∞</div>
+    <h2>Pronto para sua melhor temporada?</h2>
+    <p>Junte-se a centenas de atletas que usam dados para treinar de forma mais inteligente.</p>
+    <div class="urgency-timer" style="justify-content:center;margin:25px 0">
+      <div class="timer-box"><strong>23</strong>horas</div>
+      <div class="timer-box"><strong>59</strong>min</div>
+      <div class="timer-box"><strong>59</strong>seg</div>
+    </div>
+    <a href="https://pay.hotmart.com/D107289174S?off=wsvcmylk" class="btn-primary" style="font-size:1.2rem;padding:18px 40px">⚡ Comecar Teste Gratis de 7 Dias</a>
+    <p style="color:#666;font-size:.85rem;margin-top:15px">7 dias gratis • 1º mes R$ 19,90 • Depois R$ 49,90/mes</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:15px">
+      <div style="width:32px;height:32px;background:linear-gradient(135deg,#f97316,#c2410c);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem">∞</div>
+      <span style="font-size:1.2rem;font-weight:700;color:#f97316">HybridTracker</span>
+    </div>
+    <p>Desenvolvido para atletas de fitness racing que querem ir alem.</p>
+    <p style="margin-top:10px">© 2026 HybridTracker. Todos os direitos reservados. | <a href="#">Termos de Uso</a> | <a href="#">Privacidade</a></p>
+  </div>
+</footer>
+
+<script>
+// Countdown timer
+function updateTimer(){
+  const now=new Date();
+  const end=new Date();
+  end.setHours(23,59,59,999);
+  let diff=end-now;
+  if(diff<0)diff=86400000+diff;
+  const h=Math.floor(diff/3600000);
+  const m=Math.floor((diff%3600000)/60000);
+  const s=Math.floor((diff%60000)/1000);
+  document.querySelectorAll('.urgency-timer strong').forEach((el,i)=>{
+    el.textContent=String([h,m,s][i]).padStart(2,'0');
+  });
+}
+setInterval(updateTimer,1000);updateTimer();
+
+// Particles
+const canvas=document.getElementById('particles');
+if(canvas){
+  const ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth;
+  canvas.height=window.innerHeight;
+  const particles=[];
+  for(let i=0;i<50;i++){
+    particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5,size:Math.random()*2+1});
+  }
+  function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle='rgba(249,115,22,.3)';
+    particles.forEach(p=>{
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>canvas.width)p.vx*=-1;
+      if(p.y<0||p.y>canvas.height)p.vy*=-1;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+      ctx.fill();
+    });
+    requestAnimationFrame(animate);
+  }
+  animate();
+}
+</script>
+</body>
+</html>

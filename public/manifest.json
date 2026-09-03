@@ -1,0 +1,20 @@
+{
+  "name": "HybridTracker - Fitness Racing",
+  "short_name": "HybridTracker",
+  "description": "Acompanhe benchmarks, simule provas e otimize sua performance no fitness racing.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#FF6B00",
+  "orientation": "portrait",
+  "scope": "/",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "/logo-v2.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+POLITICA DE PRIVACIDADE - HYBRIDTRACKER
+
+1. INTRODUCAO
+A sua privacidade e importante para nos. Esta Politica de Privacidade descreve como coletamos, usamos e protegemos suas informacoes ao usar o HybridTracker.
+
+2. DADOS COLETADOS
+
+2.1 Dados de Cadastro:
+- Nome
+- Email
+- Data de nascimento (opcional)
+- Genero (opcional)
+
+2.2 Dados de Treino:
+- Tempos de benchmarks
+- Historico de treinos
+- Dados de recuperacao
+- Informacoes de saude inseridas voluntariamente
+
+2.3 Dados Tecnicos:
+- Tipo de dispositivo
+- Sistema operacional
+- Dados de navegacao no app
+
+3. COMO USAMOS SEUS DADOS
+
+3.1 Finalidades:
+- Personalizar seu plano de treinos
+- Calcular metricas de performance (VO2max, limiar de lactato)
+- Enviar notificacoes de treino e recuperacao
+- Melhorar a experiencia do usuario
+
+3.2 Nao Compartilhamos:
+- Nao vendemos dados pessoais
+- Nao compartilhamos com terceiros para marketing
+- Dados anonimizados podem ser usados para estatisticas internas
+
+4. ARMAZENAMENTO E SEGURANCA
+
+4.1 Local de Armazenamento:
+- Dados principais: armazenados localmente no seu dispositivo
+- Backup opcional: sincronizacao criptografada
+
+4.2 Seguranca:
+- Criptografia de dados sensiveis
+- Acesso restrito a servidores
+- Monitoramento continuo de seguranca
+
+5. SEUS DIREITOS
+
+Voce tem direito a:
+- Acessar seus dados
+- Corrigir informacoes incorretas
+- Excluir sua conta e dados
+- Exportar seus dados
+- Revogar consentimento
+
+Para exercer esses direitos, entre em contato pelo email [SEU_EMAIL].
+
+6. COOKIES E TECNOLOGIAS SIMILARES
+
+O HybridTracker usa:
+- Cookies essenciais para funcionamento
+- LocalStorage para dados do app
+- Service Workers para funcionamento offline
+
+7. SERVICOS DE TERCEIROS
+
+O app pode integrar com:
+- Hotmart (processamento de pagamentos)
+- Servicos de wearable (Garmin, Polar, Apple Watch)
+- YouTube (videos de demonstracao)
+
+Cada servico possui sua propria politica de privacidade.
+
+8. CRIANCAS E ADOLESCENTES
+
+O HybridTracker nao e destinado a menores de 16 anos. Nao coletamos intencionalmente dados de menores.
+
+9. ALTERACOES NA POLITICA
+
+- Alteracoes serao comunicadas por email
+- Alteracoes significativas exigirao novo consentimento
+- A data da ultima atualizacao esta no final deste documento
+
+10. CONTATO
+
+Para questoes sobre privacidade:
+Email: [SEU_EMAIL]
+Assunto: Privacidade HybridTracker
+
+11. BASE LEGAL (LGPD)
+
+Tratamos dados pessoais com base em:
+- Execucao de contrato (assinatura)
+- Consentimento do titular
+- Interesse legitimo (melhorias do app)
+
+Data da ultima atualizacao: 16/08/2026

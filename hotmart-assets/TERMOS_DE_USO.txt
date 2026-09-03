@@ -1,0 +1,58 @@
+TERMOS DE USO - HYBRIDTRACKER
+
+1. ACEITACAO DOS TERMOS
+Ao acessar e usar o HybridTracker, voce concorda com estes termos de uso. Se nao concordar, nao utilize o servico.
+
+2. DESCRICAO DO SERVICO
+O HybridTracker e um aplicativo web progressivo (PWA) de acompanhamento de treinos para atletas de fitness racing. O app oferece benchmarks, timer de prova, plano semanal adaptativo e modulos de recuperacao.
+
+3. ASSINATURA E PAGAMENTO
+- O acesso ao app e mediante assinatura paga
+- Apos 7 dias de teste gratuito, o primeiro mes custa R$ 19,90
+- A partir do segundo mes, o valor e de R$ 49,90 mensais
+- A assinatura e gerenciada pela plataforma Hotmart
+- Voce pode cancelar a qualquer momento pela Hotmart
+
+4. PERIODO DE TESTE
+- Oferecemos 7 dias de teste gratuito
+- Durante o teste, voce tem acesso completo a todas as funcionalidades
+- Nao e necessario cartao de credito para o teste
+- Ao final do teste, a assinatura sera cobrada automaticamente caso nao seja cancelada
+
+5. POLITICA DE REEMBOLSO
+- Garantia incondicional de 7 dias
+- Dentro do prazo de 7 dias, voce pode solicitar reembolso integral
+- O reembolso e processado pela Hotmart de acordo com suas politicas
+
+6. USO DO APP
+- O app destina-se a fins de acompanhamento de treinos
+- Nao substitui orientacao medica ou de profissional de educacao fisica
+- Consulte um medico antes de iniciar qualquer programa de treinos
+- O usuario e responsavel por seus dados de saude inseridos no app
+
+7. DADOS DO USUARIO
+- Os dados sao armazenados localmente no dispositivo
+- Opcionalmente, dados podem ser sincronizados com servicos de nuvem
+- Nao vendemos ou compartilhamos dados pessoais com terceiros
+- Voce pode excluir seus dados a qualquer momento
+
+8. PROPRIEDADE INTELECTUAL
+- O HybridTracker e propriedade de seus desenvolvedores
+- E proibida a reproducao, distribuicao ou modificacao do app sem autorizacao
+- O conteudo do app (textos, imagens, videos) e protegido por direitos autorais
+
+9. LIMITACAO DE RESPONSABILIDADE
+- O HybridTracker nao se responsabiliza por lesoes ou danos decorrentes do uso do app
+- Recomendamos sempre consultar profissionais de saude antes de treinos intensos
+- O app e fornecido "no estado em que se encontra"
+
+10. ALTERACOES NOS TERMOS
+- Estes termos podem ser atualizados periodicamente
+- Alteracoes significativas serao comunicadas por email
+- O uso continuado do app apos alteracoes implica aceitacao
+
+11. CONTATO
+Para duvidas ou suporte, entre em contato:
+Email: [SEU_EMAIL]
+
+Data de atualizacao: 16/08/2026

@@ -1,0 +1,94 @@
+# DESCRICAO DO PRODUTO - HYBRIDTRACKER PRO
+## Para cadastrar na Hotmart (Categoria: Apps e Software)
+
+---
+
+## NOME DO PRODUTO
+HybridTracker Pro
+
+---
+
+## DESCRICAO CURTA (max 140 caracteres)
+O unico app de treino que evolui com voce. Benchmarks, timer de prova, plano semanal e recuperacao inteligente para fitness racing.
+
+---
+
+## DESCRICAO COMPLETA
+
+### O que e o HybridTracker Pro?
+
+O HybridTracker Pro e o aplicativo definitivo para atletas de fitness racing que querem ir alem. Desenvolvido especificamente para modalidades como HYROX, o app combina ciencia do esporte com tecnologia de ponta para transformar seus treinos em resultados concretos.
+
+### Para quem e indicado?
+
+- Atletas de fitness racing (HYROX, DEKA, etc.)
+- Crossfitters que querem acompanhar benchmarks
+- Corredores que buscam melhorar performance
+- Qualquer pessoa que quer treinar com dados e ciencia
+
+### O que voce recebe ao assinar:
+
+**BENCHMARKS CIENTIFICOS**
+- 8 estacoes de benchmark + teste de pista (1600m)
+- Calculo automatico de VO2max estimado
+- Limiar de lactato e zonas de treino
+- Predictor de tempo de prova
+
+**TIMER DE PROVA COMPLETA**
+- Simulacao dos 8 blocos com cronometro preciso
+- Alertas de transicao entre estacoes
+- Modo estacao isolada para treinos especificos
+
+**PLANO SEMANAL ADAPTATIVO**
+- Treinos gerados automaticamente pelos seus dados
+- Edicao livre do plano
+- Tipos: corrida, forca, metcon, recuperacao, descanso
+
+**MODULO DE RECUPERACAO INTELIGENTE**
+- Mobilidade, sono, respiracao, contrast bath
+- Check-in semanal de dor
+- Prevencao de lesoes
+
+**NOTIFICACOES INTELIGENTES**
+- Lembretes de hidratacao
+- Hora de dormir
+- Mobilidade matinal
+- Alertas de carga acumulada
+
+**INTEGRACAO COM WEARABLES**
+- Upload de arquivos .FIT, .TCX, .GPX
+- Compativel com Garmin, Polar, Apple Watch, Samsung
+
+**BONUS:**
+- Manual do Atleta (PDF)
+- Suporte em 3 idiomas: Portugues, English, Deutsch
+- PWA instalavel (funciona como app nativo no celular)
+- Funciona offline
+
+### Planos e Precos:
+
+**PLANO MENSAL:**
+- R$ 19,90 no primeiro mes apos o periodo gratuito
+- R$ 49,90/mes a partir do segundo mes
+- 7 dias de teste gratis
+
+### Garantia:
+7 dias de garantia incondicional. Se nao gostar, devolvemos 100% do valor.
+
+### Requisitos:
+- Smartphone com acesso a internet (para primeiro acesso)
+- Funciona em Android e iOS
+- Nao precisa de relogio GPS para usar
+
+---
+
+## PALAVRAS-CHAVE
+hyrox, fitness racing, app de treino, benchmarks, timer de prova, plano semanal, recuperacao, wearable, garmin, polar, apple watch, crossfit, corrida, vo2max, limiar de lactato
+
+---
+
+## IMAGENS NECESSARIAS PARA HOTMART
+
+1. **Capa do Produto** (800x450px) - Banner principal
+2. **Icone do Produto** (512x512px) - Logo do app
+3. **Screenshots do App** (minimo 3) - Mostrando telas do app

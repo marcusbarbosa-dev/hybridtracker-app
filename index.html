@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#FF6B00" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="HybridTracker" />
+    <meta name="description" content="Acompanhe benchmarks, simule provas e otimize sua performance no fitness racing." />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" href="/logo-v2.png" />
+    <title>HybridTracker</title>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          const isLocalDevelopment = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+
+          if (isLocalDevelopment) {
+            navigator.serviceWorker.getRegistrations().then((registrations) => {
+              registrations.forEach((registration) => registration.unregister());
+            });
+            return;
+          }
+
+          // Auto-update: when a new deploy's service worker takes control, reload once so the
+          // open app (and any long-lived PWA session) picks up the new build automatically.
+          let refreshingForUpdate = false;
+          navigator.serviceWorker.addEventListener('controllerchange', () => {
+            if (refreshingForUpdate) return;
+            refreshingForUpdate = true;
+            window.location.reload();
+          });
+
+          navigator.serviceWorker.register('/sw.js')
+            .then((reg) => {
+              console.log('SW registered:', reg.scope);
+
+              const activateWaitingWorker = () => {
+                if (reg.waiting) reg.waiting.postMessage({ type: 'SKIP_WAITING' });
+              };
+              activateWaitingWorker();
+
+              reg.addEventListener('updatefound', () => {
+                const newWorker = reg.installing;
+                if (!newWorker) return;
+                newWorker.addEventListener('statechange', () => {
+                  if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                    newWorker.postMessage({ type: 'SKIP_WAITING' });
+                  }
+                });
+              });
+
+              // Browsers only check for a new service worker on navigation, which this SPA
+              // rarely triggers. Actively poll so updates are found while the app stays open.
+              setInterval(() => reg.update(), 30 * 60 * 1000);
+              document.addEventListener('visibilitychange', () => {
+                if (document.visibilityState === 'visible') reg.update();
+              });
+            })
+            .catch((err) => console.log('SW registration failed:', err));
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
