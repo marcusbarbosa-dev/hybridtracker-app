@@ -4,6 +4,7 @@ import { useI18n } from '@/i18n/I18nContext';
 import { Button } from '@/components/ui/button';
 import {
   ArrowRight, Flag, Gauge, Sparkles, CalendarDays, ShieldCheck, ChevronLeft, Zap,
+  Dumbbell, Home, Clock, HeartPulse, BookOpen, Trees,
 } from 'lucide-react';
 
 const FB_PIXEL_ID = '921122063916488';
@@ -100,6 +101,30 @@ export default function Quiz() {
       ],
     },
     {
+      key: 'environment',
+      title: tr('Onde você costuma treinar?', 'Where do you usually train?', 'Wo trainierst du normalerweise?'),
+      subtitle: tr('Vamos adaptar os exercícios ao que você tem disponível.', "We'll adapt the exercises to what you have available.", 'Wir passen die Übungen an das an, was dir zur Verfügung steht.'),
+      icon: Dumbbell,
+      options: [
+        { value: 'full_gym', icon: Dumbbell, label: tr('Academia completa', 'A full gym', 'Ein vollständiges Fitnessstudio') },
+        { value: 'home', icon: Home, label: tr('Em casa, com pouco equipamento', 'At home, with little equipment', 'Zu Hause, mit wenig Ausrüstung') },
+        { value: 'outdoor', icon: Trees, label: tr('Ao ar livre / só corrida', 'Outdoors / running only', 'Draußen / nur Laufen') },
+        { value: 'mixed', icon: Sparkles, label: tr('Um pouco de tudo', 'A bit of everything', 'Ein bisschen von allem') },
+      ],
+    },
+    {
+      key: 'obstacle',
+      title: tr('O que mais te atrapalha para treinar hoje?', "What's holding you back the most right now?", 'Was hält dich im Moment am meisten zurück?'),
+      subtitle: tr('Seja sincero — vamos construir o plano em volta disso.', "Be honest — we'll build the plan around this.", 'Sei ehrlich — wir bauen den Plan darum herum auf.'),
+      icon: HeartPulse,
+      options: [
+        { value: 'time', icon: Clock, label: tr('Falta de tempo', 'Lack of time', 'Zeitmangel') },
+        { value: 'consistency', icon: HeartPulse, label: tr('Falta de constância e motivação', 'Lack of consistency and motivation', 'Mangelnde Beständigkeit und Motivation') },
+        { value: 'knowledge', icon: BookOpen, label: tr('Não saber montar o treino certo', 'Not knowing how to structure training', 'Nicht zu wissen, wie man richtig trainiert') },
+        { value: 'injury', icon: ShieldCheck, label: tr('Medo de lesão ou dor', 'Fear of injury or pain', 'Angst vor Verletzung oder Schmerzen') },
+      ],
+    },
+    {
       key: 'timeline',
       title: tr('Você já tem uma prova marcada?', 'Do you already have a race booked?', 'Hast du bereits ein Rennen gebucht?'),
       subtitle: tr('Isso define a urgência do seu plano.', 'This sets the urgency of your plan.', 'Das bestimmt die Dringlichkeit deines Plans.'),
@@ -153,7 +178,15 @@ export default function Quiz() {
         : goal === 'hybrid_fitness'
           ? tr('ganhar resistência e força juntas', 'build endurance and strength together', 'Ausdauer und Kraft gemeinsam aufbauen')
           : tr('começar com o pé direito', 'get started on the right foot', 'richtig loszulegen');
-    return { levelLabel, goalLabel };
+    const obstacle = answers.obstacle;
+    const obstacleLabel = obstacle === 'time'
+      ? tr('a falta de tempo', 'your lack of time', 'deinen Zeitmangel')
+      : obstacle === 'consistency'
+        ? tr('a falta de constância', 'your lack of consistency', 'deine mangelnde Beständigkeit')
+        : obstacle === 'injury'
+          ? tr('o medo de lesão', 'your fear of injury', 'deine Angst vor Verletzungen')
+          : tr('não saber montar o treino certo', 'not knowing how to train correctly', 'nicht zu wissen, wie man richtig trainiert');
+    return { levelLabel, goalLabel, obstacleLabel };
   }, [answers, lang]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
@@ -183,13 +216,13 @@ export default function Quiz() {
         {!started && (
           <div className="text-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-500/10 px-4 py-2 text-xs font-bold tracking-[.18em] text-orange-300">
-              <Zap className="h-4 w-4" />{tr('30 SEGUNDOS', '30 SECONDS', '30 SEKUNDEN')}
+              <Zap className="h-4 w-4" />{tr('1 MINUTO', '1 MINUTE', '1 MINUTE')}
             </div>
             <h1 className="mt-6 text-4xl font-black leading-tight sm:text-5xl">
               {tr('Descubra seu plano ideal para o Hyrox', 'Discover your ideal HYROX training plan', 'Entdecke deinen idealen HYROX-Trainingsplan')}
             </h1>
             <p className="mx-auto mt-5 max-w-xl text-lg text-white/60">
-              {tr('4 perguntas rápidas para montarmos um caminho de treino sob medida para você.', '4 quick questions so we can build a training path made for you.', '4 kurze Fragen, um einen Trainingsplan genau für dich zu erstellen.')}
+              {tr('6 perguntas rápidas para montarmos um caminho de treino sob medida para você.', '6 quick questions so we can build a training path made for you.', '6 kurze Fragen, um einen Trainingsplan genau für dich zu erstellen.')}
             </p>
             <Button size="lg" onClick={start} className="mt-9 h-14 rounded-xl bg-orange-500 px-8 text-base font-black text-black hover:bg-orange-400">
               {tr('Começar quiz', 'Start the quiz', 'Quiz starten')}<ArrowRight className="ml-2 h-5 w-5" />
@@ -238,6 +271,11 @@ export default function Quiz() {
               {!isPt && !isEn && (
                 <>Mit einem <strong className="text-white">{resultCopy.levelLabel}</strong>-Profil hilft dir HybridTracker, <strong className="text-white">{resultCopy.goalLabel}</strong> — mit einem Wochenplan, der sich an deinen Alltag anpasst.</>
               )}
+            </p>
+            <p className="mx-auto mt-3 max-w-lg text-sm text-white/45">
+              {isPt && <>Sabemos que <strong className="text-white/70">{resultCopy.obstacleLabel}</strong> é um desafio real — por isso o plano é pensado pra caber exatamente na sua rotina.</>}
+              {isEn && <>We know <strong className="text-white/70">{resultCopy.obstacleLabel}</strong> is a real challenge — that's why the plan is built to fit exactly into your routine.</>}
+              {!isPt && !isEn && <>Wir wissen, dass <strong className="text-white/70">{resultCopy.obstacleLabel}</strong> eine echte Herausforderung ist — deshalb passt der Plan genau in deinen Alltag.</>}
             </p>
             <a href={hotmartUrl} onClick={() => firePixel('track', 'InitiateCheckout')}>
               <Button size="lg" className="mt-9 h-14 w-full rounded-xl bg-orange-500 px-8 text-base font-black text-black hover:bg-orange-400 sm:w-auto">
