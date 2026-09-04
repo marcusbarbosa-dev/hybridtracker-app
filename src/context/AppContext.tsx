@@ -320,13 +320,18 @@ export function AppProvider({ children }: { children: ReactNode }) {
       const profile = loadAthleteProfile();
       const oldGenerated = buildWorkoutPlan(oldLang, profile);
       const newGenerated = buildWorkoutPlan(lang, profile);
-      const oldByDate = new Map(oldGenerated.map(w => [w.date, w]));
+      // Titles are static per role/language, unlike descriptions (which embed
+      // week-dependent numbers like RPE/distance that drift day to day as
+      // `today` rolls forward). Matching on title membership — rather than an
+      // exact re-generated snapshot for the workout's date — reliably detects
+      // generator-produced workouts even after that drift, while still leaving
+      // CSV-imported or manually edited workouts (whose title won't match any
+      // known generated title) untouched.
+      const oldTitles = new Set(oldGenerated.map(w => w.title));
       const newByDate = new Map(newGenerated.map(w => [w.date, w]));
       const relocalized = current.workoutPlan.map(workout => {
-        const matchedOld = oldByDate.get(workout.date);
         const matchedNew = newByDate.get(workout.date);
-        if (!matchedOld || !matchedNew) return workout;
-        if (workout.title !== matchedOld.title || workout.description !== matchedOld.description) return workout;
+        if (!matchedNew || !oldTitles.has(workout.title)) return workout;
         return { ...workout, title: matchedNew.title, description: matchedNew.description };
       });
       const next = { ...current, workoutPlan: relocalized };
